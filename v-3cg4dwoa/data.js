@@ -31,7 +31,8 @@
  *     website          venue website (optional)
  *     map              2GIS / map link (optional)
  *     note_ru/_kz      small gold tag next to the venue, e.g. "Бизнес Тимура" (optional)
- *     links[]          extra links (optional): { label_ru, label_kz, url }
+ *     links[]          extra links (optional): { label_ru, label_kz, url, type? }
+ *                        type: "instagram" -> Instagram icon (default: globe)
  */
 window.AGALAR_DATA = {
   meta: {
@@ -46,7 +47,7 @@ window.AGALAR_DATA = {
       doc_title: "Братья из Актау в Астане · 10–11 октября",
       eyebrow: "Астана · 10–11 октября 2026",
       hero_title: "Братья из Актау<br>в Астане",
-      hero_lead: "Добро пожаловать в столицу! Два дня встреч, памяти, добрых дел и братского тепла.",
+      hero_lead: "Предприниматели из Астаны приветствуют коллег из Актау.",
       arrival: "Прилёт",
       departure: "Вылет",
       cta_program: "Программа",
@@ -69,7 +70,7 @@ window.AGALAR_DATA = {
       doc_title: "Ақтаулық ағалар Астанада · 10–11 қазан",
       eyebrow: "Астана · 10–11 қазан 2026",
       hero_title: "Ақтаулық ағалар<br>Астанада",
-      hero_lead: "Елордаға қош келдіңіздер! Кездесу, тағылым, игі істер мен бауырмалдыққа толы екі күн.",
+      hero_lead: "Астаналық кәсіпкерлер Ақтаудан келген әріптестерін қарсы алады.",
       arrival: "Ұшып келу",
       departure: "Ұшып кету",
       cta_program: "Бағдарлама",
@@ -95,8 +96,8 @@ window.AGALAR_DATA = {
     {
       name_ru: "Акиф", name_kz: "Акиф",
       photo: "/v-3cg4dwoa/assets/friends/akif.jpg",
-      role_ru: "Ум, честь и совесть группы",
-      role_kz: "Топтың ақылы, ары мен ожданы",
+      role_ru: "КМС по вольной борьбе",
+      role_kz: "Еркін күрестен спорт шеберлігіне үміткер",
       links: []
     },
     {
@@ -155,6 +156,7 @@ window.AGALAR_DATA = {
       role_kz: "IT-коммуникация саласындағы PR: PR-ға қатысты барлық бағыт.",
       links: [
         { type: "instagram", url: "https://www.instagram.com/anuarbek_zhalel" },
+        { type: "facebook",  url: "https://www.facebook.com/share/1A4Dn68h7a/" },
         { type: "business_instagram", label: "AI Sport", url: "https://www.instagram.com/ai.sport.app" }
       ]
     },
@@ -190,6 +192,41 @@ window.AGALAR_DATA = {
         { type: "instagram", url: "https://www.instagram.com/dr.kaikan" },
         { type: "business_instagram", label: "Dental Pro", url: "https://www.instagram.com/dental_pro_astana" }
       ]
+    },
+    {
+      name_ru: "Айвар", name_kz: "Айвар",
+      handle: "moto_zra",
+      photo: "/v-3cg4dwoa/assets/friends/moto_zra.jpg",
+      role_ru: "Основатель AVA auto glass (автостёкла в Астане и Петропавловске) и кофейни Taksofon в Новоишимском",
+      role_kz: "AVA auto glass (Астана мен Петропавлдағы автоәйнектер) және Новоишимдегі Taksofon кофеханасының негізін қалаушы",
+      links: [
+        { type: "instagram", url: "https://www.instagram.com/moto_zra/" },
+        { type: "business_instagram", label: "AVA auto glass", url: "https://www.instagram.com/avtostekla.v.astane/" },
+        { type: "business_instagram", label: "Steklolux", url: "https://www.instagram.com/steklolux_sko/" },
+        { type: "business_instagram", label: "Taksofon", url: "https://www.instagram.com/taksofon.novoishimka/" }
+      ]
+    },
+    {
+      name_ru: "Ермахан", name_kz: "Ермахан",
+      handle: "ermahan_sarybaevich",
+      photo: "",  /* avatar not captured cleanly (cut off in screenshot) -> placeholder; add /v-3cg4dwoa/assets/friends/ermahan_sarybaevich.jpg later */
+      role_ru: "Владелец магазинов Picasso (женская обувь, верхняя одежда и сумки) и Picasso Kids (детская обувь) в Астане",
+      role_kz: "Астанадағы Picasso (әйелдер аяқ киімі, сырт киім мен сөмкелер) және Picasso Kids (балалар аяқ киімі) дүкендерінің иесі",
+      links: [
+        { type: "instagram", url: "https://www.instagram.com/ermahan_sarybaevich/" },
+        { type: "business_instagram", label: "Picasso", url: "https://www.instagram.com/picasso.kz2/" },
+        { type: "business_instagram", label: "Picasso Kids", url: "https://www.instagram.com/picasso.kids2/" }
+      ]
+    },
+    {
+      name_ru: "Тимур", name_kz: "Тимур",
+      handle: "timasatybaldyuly",
+      photo: "/v-3cg4dwoa/assets/friends/timasatybaldyuly.jpg",
+      role_ru: "Владелец производственной компании",
+      role_kz: "Өндірістік компанияның иесі",
+      links: [
+        { type: "instagram", url: "https://www.instagram.com/timasatybaldyuly/" }
+      ]
     }
   ],
 
@@ -211,7 +248,10 @@ window.AGALAR_DATA = {
         {
           time: "~09:00–11:00",
           title_ru: "Завтрак у Армана дома",
-          title_kz: "Арманның үйінде таңғы ас"
+          title_kz: "Арманның үйінде таңғы ас",
+          venue_ru: "Vela House, таунхаус",
+          venue_kz: "Vela House, таунхаус",
+          map: "https://2gis.kz/astana/geo/70030076391877278/71.434769,51.059728"
         },
         {
           time: "~11:00",
@@ -299,12 +339,18 @@ window.AGALAR_DATA = {
         {
           time: "~12:30",
           title_ru: "Конная прогулка, обед на месте",
-          title_kz: "Атпен серуендеу, түскі ас сол жерде"
+          title_kz: "Атпен серуендеу, түскі ас сол жерде",
+          links: [
+            { type: "instagram", label: "Dala Tynysy", url: "https://www.instagram.com/dala.tynysy/" }
+          ]
         },
         {
           time: "~16:30",
           title_ru: "Чай у Асета дома",
-          title_kz: "Асеттің үйінде шай"
+          title_kz: "Асеттің үйінде шай",
+          venue_ru: "улица Камбар Ата, 2",
+          venue_kz: "Қамбар Ата көшесі, 2",
+          map: "https://2gis.kz/astana/geo/9570784907493903/71.235774,51.122416"
         },
         {
           time: "18:30",

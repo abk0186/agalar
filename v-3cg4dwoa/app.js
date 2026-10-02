@@ -131,7 +131,7 @@
         var rich = !!(venue || site || map || extra.length);
         var links = "";
         if (site) links += ext(site, "pill", icon("i-globe") + "<span>" + esc(t("btn_website", lang)) + "</span>");
-        extra.forEach(function (l) { links += ext(safeUrl(l.url), "pill", icon("i-globe") + "<span>" + esc(pick(l, "label", lang) || t("btn_website", lang)) + "</span>"); });
+        extra.forEach(function (l) { links += ext(safeUrl(l.url), "pill", icon(l.type === "instagram" ? "i-instagram" : "i-globe") + "<span>" + esc(pick(l, "label", lang) || t("btn_website", lang)) + "</span>"); });
         if (map) links += ext(map, "pill", icon("i-pin") + "<span>" + esc(t("btn_map", lang)) + "</span>");
         var card = "";
         var note = pick(it, "note", lang);
