@@ -3,7 +3,7 @@
   "use strict";
   var DATA = window.AGALAR_DATA || { ui: { ru: {}, kz: {} }, friends: [], days: [] };
   var LANGS = ["ru", "kz"];
-  var STORE_KEY = "agalar_lang";
+  var STORE_KEY = "agalar_lang_v2";
   var PLACEHOLDER = "assets/avatar-placeholder.svg";
 
   function esc(s) {
@@ -44,7 +44,7 @@
     }
     var s = null;
     try { s = localStorage.getItem(STORE_KEY); } catch (e) {}
-    return LANGS.indexOf(s) !== -1 ? s : "ru";
+    return LANGS.indexOf(s) !== -1 ? s : "kz";
   }
   function save(lang) { try { localStorage.setItem(STORE_KEY, lang); } catch (e) {} }
 
@@ -173,7 +173,7 @@
     applyLang(lang);
     try {
       var u = new URL(location.href);
-      if (lang === "ru") u.searchParams.delete("lang"); else u.searchParams.set("lang", lang);
+      if (lang === "kz") u.searchParams.delete("lang"); else u.searchParams.set("lang", lang);
       history.replaceState(null, "", u.pathname + u.search + u.hash);
     } catch (e) {}
   }
