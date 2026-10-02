@@ -1,0 +1,3 @@
+# Private welcome page, shared by link only.
+User-agent: *
+Disallow: /
