@@ -21,6 +21,9 @@
   --radius: 18px;
   --pad: clamp(18px, 5vw, 40px);
   --max: 1160px;
+  /* iPhone notch / rounded corners in landscape (needs viewport-fit=cover, already set) */
+  --safe-l: env(safe-area-inset-left, 0px);
+  --safe-r: env(safe-area-inset-right, 0px);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -49,7 +52,7 @@ a { color: inherit; }
 
 /* ---------- Top bar ---------- */
 .topbar {
-  position: absolute; inset: 0 0 auto 0; z-index: 10;
+  position: absolute; top: 0; right: 0; left: 0; inset: 0 0 auto 0; z-index: 10; /* top/left/right: fallback for Safari < 14.1 */
   display: flex; align-items: center; justify-content: space-between;
   padding: calc(14px + env(safe-area-inset-top)) var(--pad) 14px;
 }
@@ -66,16 +69,17 @@ a { color: inherit; }
 
 /* ---------- Hero ---------- */
 .hero { position: relative; isolation: isolate; overflow: hidden;
+  min-height: min(92vh, 860px); /* fallback for Safari < 15.4 (no svh) */
   min-height: min(92svh, 860px);
   display: grid; place-items: center; text-align: center;
   padding: calc(96px + env(safe-area-inset-top)) var(--pad) clamp(56px, 9vh, 96px);
   border-bottom: 1px solid var(--line); }
-.hero__pattern { position: absolute; inset: 0; z-index: -1; opacity: .9;
+.hero__pattern { position: absolute; top: 0; right: 0; bottom: 0; left: 0; inset: 0; z-index: -1; opacity: .9;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='72' viewBox='-60 -36 120 72'%3E%3Cg fill='none' stroke='%23d4b06a' stroke-opacity='.06' stroke-width='1.2' stroke-linecap='round'%3E%3Cpath d='M0 13 C0 1 -7 -9 -17 -9 C-26 -9 -31 -1 -27 5.5 C-24 10 -17 9 -17 3.5 C-17 0 -21 -1 -22.5 1.5'/%3E%3Cpath d='M0 13 C0 1 7 -9 17 -9 C26 -9 31 -1 27 5.5 C24 10 17 9 17 3.5 C17 0 21 -1 22.5 1.5'/%3E%3C/g%3E%3C/svg%3E");
   background-size: 120px 72px;
   -webkit-mask-image: radial-gradient(ellipse at 50% 45%, #000 0%, rgba(0,0,0,.55) 45%, transparent 78%);
   mask-image: radial-gradient(ellipse at 50% 45%, #000 0%, rgba(0,0,0,.55) 45%, transparent 78%); }
-.hero::after { content: ""; position: absolute; inset: auto 0 0 0; height: 140px; z-index: -1;
+.hero::after { content: ""; position: absolute; right: 0; bottom: 0; left: 0; inset: auto 0 0 0; height: 140px; z-index: -1;
   background: linear-gradient(180deg, transparent, rgba(11,19,36,.85)); }
 .hero__inner { max-width: 820px; width: 100%; animation: rise .9s ease-out both; }
 @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
@@ -264,3 +268,19 @@ a { color: inherit; }
   .friend--minimal .friend__photo { margin-top: 0; }
 }
 
+/* ---------- Device fixes (responsive QA 02.10.2026) ---------- */
+/* Landscape iPhone: keep content clear of the notch / rounded corners.
+   On devices without insets max() resolves to the normal --pad. */
+@supports (padding: max(0px)) {
+  .topbar, .hero, .section, .footer {
+    padding-left: max(var(--pad), var(--safe-l));
+    padding-right: max(var(--pad), var(--safe-r));
+  }
+}
+/* Bigger touch areas (~44px) without changing the visual size of controls */
+.brand, .lang__btn, .tag, .pill, .icon-btn { position: relative; }
+.brand::after, .lang__btn::after, .tag::after, .pill::after, .icon-btn::after { content: ""; position: absolute; }
+.brand::after { top: -7px; bottom: -7px; left: -4px; right: -4px; }
+.lang__btn::after { top: -6px; bottom: -6px; left: 0; right: 0; }
+.tag::after, .pill::after { top: -4px; bottom: -4px; left: 0; right: 0; }
+.icon-btn::after { top: -2px; bottom: -2px; left: -2px; right: -2px; }
