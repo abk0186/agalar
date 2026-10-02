@@ -51,10 +51,10 @@ window.AGALAR_DATA = {
       arrival: "Прилёт",
       departure: "Вылет",
       cta_program: "Программа",
-      friends_kicker: "Ағалар",
+      friends_kicker: "",
       friends_title: "Наш круг",
       friends_lead: "Братья, которые собираются вместе в эти дни.",
-      program_kicker: "Бағдарлама",
+      program_kicker: "",
       program_title: "Программа визита",
       program_lead: "Время ориентировочное, детали уточняются.",
       btn_instagram: "Instagram",
@@ -104,8 +104,8 @@ window.AGALAR_DATA = {
       name_ru: "Асет", name_kz: "Асет",
       handle: "assetbegaliyev",
       photo: "/v-3cg4dwoa/assets/friends/assetbegaliyev.jpg",
-      role_ru: "Основатель клининговой компании Adal Works: коммерческий клининг, обслуживание объектов и ЖК. IT-предприниматель, сооснователь стартапа Beksar.",
-      role_kz: "Adal Works клининг компаниясының негізін қалаушы: коммерциялық клининг, нысандар мен ТҮК-ге қызмет көрсету. IT-кәсіпкер, Beksar стартапының тең құрылтайшысы.",
+      role_ru: "Основатель клининговой компании Adal Works, IT-предприниматель, сооснователь стартапа Beksar.",
+      role_kz: "Adal Works клининг компаниясының негізін қалаушы, IT-кәсіпкер, Beksar стартапының тең құрылтайшысы.",
       links: [
         { type: "instagram", url: "https://www.instagram.com/assetbegaliyev" },
         { type: "facebook",  url: "https://www.facebook.com/asset.begaliyev" },
@@ -118,8 +118,8 @@ window.AGALAR_DATA = {
       name_ru: "Тимур", name_kz: "Тимур",
       handle: "kaltayev_t",
       photo: "/v-3cg4dwoa/assets/friends/kaltayev_t.jpg",
-      role_ru: "Владелец бизнесов FARШ, Summer Love и All Off Burger",
-      role_kz: "FARШ, Summer Love және All Off Burger бизнестерінің иесі",
+      role_ru: "Владелец бизнесов FARШ и All Off Burger (бургерные), а также Summer Love (замороженный йогурт)",
+      role_kz: "FARШ және All Off Burger (бургерханалар), сондай-ақ Summer Love (мұздатылған йогурт) бизнестерінің иесі",
       links: [
         { type: "instagram", url: "https://www.instagram.com/kaltayev_t" },
         { type: "business_instagram", label: "FARШ", url: "https://www.instagram.com/farsh_burger_kz" },
@@ -141,8 +141,8 @@ window.AGALAR_DATA = {
       name_ru: "Армат", name_kz: "Армат",
       handle: "armat_mendigaziyev",
       photo: "/v-3cg4dwoa/assets/friends/armat_mendigaziyev.jpg",
-      role_ru: "Основатель KAZSAFETY: спецодежда и СИЗ, Актау · партнёр PowerUp",
-      role_kz: "KAZSAFETY негізін қалаушы: арнайы киім және жеке қорғану құралдары, Ақтау · PowerUp серіктесі",
+      role_ru: "Основатель KAZSAFETY: спецодежда и СИЗ, Актау · партнёр PowerUp (станции зарядки телефонов)",
+      role_kz: "KAZSAFETY негізін қалаушы: арнайы киім және жеке қорғану құралдары, Ақтау · PowerUp серіктесі (телефон зарядтау станциялары)",
       links: [
         { type: "instagram", url: "https://www.instagram.com/armat_mendigaziyev" },
         { type: "website", label: "KazSafety", url: "https://kazsafety.kz/" }
@@ -263,11 +263,6 @@ window.AGALAR_DATA = {
           about_kz: "Саяси қуғын-сүргін құрбандарына арналған мемориал: 18 мыңнан астам әйел өткен Ақмола лагерінің орнында. Ақмол (Малиновка) ауылы, Астанадан ~40 км.",
           website: "https://museum-alzhir.kz/ru/",
           map: "https://2gis.kz/geo/70030076493099387"
-        },
-        {
-          time: "~13:00",
-          title_ru: "Зухр-намаз в мечети, Малиновка",
-          title_kz: "Ақмол (Малиновка) ауылындағы мешітте бесін намазы"
         },
         {
           time: "~13:30",

@@ -285,3 +285,5 @@ a { color: inherit; }
 .lang__btn::after { top: -6px; bottom: -6px; left: 0; right: 0; }
 .tag::after, .pill::after { top: -4px; bottom: -4px; left: 0; right: 0; }
 .icon-btn::after { top: -2px; bottom: -2px; left: -2px; right: -2px; }
+
+.kicker:empty { display: none; }
