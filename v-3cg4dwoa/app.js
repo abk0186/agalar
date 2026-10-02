@@ -4,7 +4,7 @@
   var DATA = window.AGALAR_DATA || { ui: { ru: {}, kz: {} }, friends: [], days: [] };
   var LANGS = ["ru", "kz"];
   var STORE_KEY = "agalar_lang_v2";
-  var PLACEHOLDER = "assets/avatar-placeholder.svg";
+  var PLACEHOLDER = "/v-3cg4dwoa/assets/avatar-placeholder.svg";
 
   function esc(s) {
     return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {

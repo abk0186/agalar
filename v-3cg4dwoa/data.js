@@ -94,7 +94,7 @@ window.AGALAR_DATA = {
   friends: [
     {
       name_ru: "Акиф", name_kz: "Акиф",
-      photo: "assets/friends/akif.jpg",
+      photo: "/v-3cg4dwoa/assets/friends/akif.jpg",
       role_ru: "Ум, честь и совесть группы",
       role_kz: "Топтың ақылы, ары мен ожданы",
       links: []
@@ -102,7 +102,7 @@ window.AGALAR_DATA = {
     {
       name_ru: "Асет", name_kz: "Асет",
       handle: "assetbegaliyev",
-      photo: "assets/friends/assetbegaliyev.jpg",
+      photo: "/v-3cg4dwoa/assets/friends/assetbegaliyev.jpg",
       role_ru: "Основатель клининговой компании Adal Works: коммерческий клининг, обслуживание объектов и ЖК. IT-предприниматель, сооснователь стартапа Beksar.",
       role_kz: "Adal Works клининг компаниясының негізін қалаушы: коммерциялық клининг, нысандар мен ТҮК-ге қызмет көрсету. IT-кәсіпкер, Beksar стартапының тең құрылтайшысы.",
       links: [
@@ -116,7 +116,7 @@ window.AGALAR_DATA = {
     {
       name_ru: "Тимур", name_kz: "Тимур",
       handle: "kaltayev_t",
-      photo: "assets/friends/kaltayev_t.jpg",
+      photo: "/v-3cg4dwoa/assets/friends/kaltayev_t.jpg",
       role_ru: "Владелец бизнесов FARШ, Summer Love и All Off Burger",
       role_kz: "FARШ, Summer Love және All Off Burger бизнестерінің иесі",
       links: [
@@ -129,7 +129,7 @@ window.AGALAR_DATA = {
     {
       name_ru: "Арман", name_kz: "Арман",
       handle: "arman_tyutyukov",
-      photo: "assets/friends/arman_tyutyukov.jpg",
+      photo: "/v-3cg4dwoa/assets/friends/arman_tyutyukov.jpg",
       role_ru: "Компания «Оценка ЕКС»: оценка и экспертиза, профессиональная оценочная деятельность. Международный оценщик REV.",
       role_kz: "«Оценка ЕКС» компаниясы: бағалау және сараптама, кәсіби бағалау қызметі. REV халықаралық бағалаушысы.",
       links: [
@@ -139,7 +139,7 @@ window.AGALAR_DATA = {
     {
       name_ru: "Армат", name_kz: "Армат",
       handle: "armat_mendigaziyev",
-      photo: "assets/friends/armat_mendigaziyev.jpg",
+      photo: "/v-3cg4dwoa/assets/friends/armat_mendigaziyev.jpg",
       role_ru: "Основатель KAZSAFETY: спецодежда и СИЗ, Актау · партнёр PowerUp",
       role_kz: "KAZSAFETY негізін қалаушы: арнайы киім және жеке қорғану құралдары, Ақтау · PowerUp серіктесі",
       links: [
@@ -150,7 +150,7 @@ window.AGALAR_DATA = {
     {
       name_ru: "Ануарбек", name_kz: "Ануарбек",
       handle: "anuarbek_zhalel",
-      photo: "assets/friends/anuarbek_zhalel.jpg",
+      photo: "/v-3cg4dwoa/assets/friends/anuarbek_zhalel.jpg",
       role_ru: "PR в сфере IT-коммуникаций: всё, что связано с PR.",
       role_kz: "IT-коммуникация саласындағы PR: PR-ға қатысты барлық бағыт.",
       links: [
@@ -161,7 +161,7 @@ window.AGALAR_DATA = {
     {
       name_ru: "Асылжан", name_kz: "Асылжан",
       handle: "assylzhan1989",
-      photo: "assets/friends/assylzhan1989.jpg",
+      photo: "/v-3cg4dwoa/assets/friends/assylzhan1989.jpg",
       role_ru: "Аренда автомобилей на месторождениях и снабжение продуктами вахтовых посёлков.",
       role_kz: "Кен орындарында көлік жалға беру және вахталық кенттерді азық-түлікпен қамтамасыз ету.",
       links: [
@@ -172,7 +172,7 @@ window.AGALAR_DATA = {
     {
       name_ru: "Дима", name_kz: "Дима",
       handle: "dmitroff_13",
-      photo: "assets/friends/dmitroff_13.jpg",
+      photo: "/v-3cg4dwoa/assets/friends/dmitroff_13.jpg",
       role_ru: "Основатель бренда Pro Athletic: мужская и женская спортивная и лайфстайл-одежда.",
       role_kz: "Pro Athletic брендінің негізін қалаушы: ерлер мен әйелдерге арналған спорттық және лайфстайл киім.",
       links: [
@@ -183,7 +183,7 @@ window.AGALAR_DATA = {
     {
       name_ru: "Азамат", name_kz: "Азамат",
       handle: "dr.kaikan",
-      photo: "assets/friends/dr.kaikan.jpg",
+      photo: "/v-3cg4dwoa/assets/friends/dr.kaikan.jpg",
       role_ru: "Основатель сети стоматологий Dental Pro, челюстно-лицевой хирург.",
       role_kz: "Dental Pro стоматология желісінің негізін қалаушы, жақ-бет хирургы.",
       links: [
