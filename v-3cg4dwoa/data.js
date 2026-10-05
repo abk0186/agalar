@@ -33,6 +33,11 @@
  *     note_ru/_kz      small gold tag next to the venue, e.g. "Бизнес Тимура" (optional)
  *     links[]          extra links (optional): { label_ru, label_kz, url, type? }
  *                        type: "instagram" -> Instagram icon (default: globe)
+ *
+ * weather    - live forecast block + background animation (Open-Meteo, no key)
+ *   lat / lon / timezone, days[] = visit dates "YYYY-MM-DD"
+ * music      - background music (YouTube, starts on the first tap; toggle button)
+ *   youtube_id, start (seconds)
  */
 window.AGALAR_DATA = {
   meta: {
@@ -40,6 +45,16 @@ window.AGALAR_DATA = {
     departure: { date: "11.10", time: "20:30" },
     guests: 7,
     show_handles: false  /* false -> hide the "@handle" line under names (Instagram buttons stay) */
+  },
+
+  weather: {
+    lat: 51.1694, lon: 71.4491, timezone: "Asia/Almaty",
+    days: ["2026-10-10", "2026-10-11"]
+  },
+
+  music: {
+    youtube_id: "azYCSJdY3GM",   /* «Dombyra 100 | OYU Special» */
+    start: 6                     /* seconds */
   },
 
   ui: {
@@ -64,7 +79,22 @@ window.AGALAR_DATA = {
       footer_welcome: "Добро пожаловать, братья!",
       footer_welcome_alt: "Қош келдіңіз, ағалар!",
       footer_small: "Страница для своих: доступна только по ссылке",
-      lang_label: "Язык"
+      lang_label: "Язык",
+      quote_text: "С гостем в дом приходит благодать",
+      weather_title: "Погода в Астане",
+      weather_lead: "Прогноз на дни визита, обновляется автоматически.",
+      weather_now: "Сейчас в Астане",
+      weather_feels: "ощущается как",
+      weather_wind: "ветер",
+      weather_wind_max: "Ветер до",
+      weather_precip: "Вероятность осадков",
+      weather_ms: "м/с",
+      weather_loading: "Загружаем прогноз…",
+      weather_pending: "Прогноз на эти дни появится ближе к дате визита.",
+      weather_error: "Не удалось загрузить прогноз. Попробуйте обновить страницу позже.",
+      weather_source: "Данные: Open-Meteo · обновлено",
+      music_on: "Включить музыку",
+      music_off: "Выключить музыку"
     },
     kz: {
       doc_title: "Ақтаулық ағалар Астанада · 10–11 қазан",
@@ -87,7 +117,22 @@ window.AGALAR_DATA = {
       footer_welcome: "Қош келдіңіз, ағалар!",
       footer_welcome_alt: "Добро пожаловать, братья!",
       footer_small: "Өзімізге арналған бет: тек сілтеме арқылы ашылады",
-      lang_label: "Тіл"
+      lang_label: "Тіл",
+      quote_text: "Қонақ келсе — құт келер",
+      weather_title: "Астанадағы ауа райы",
+      weather_lead: "Сапар күндеріне арналған болжам, өздігінен жаңарып тұрады.",
+      weather_now: "Қазір Астанада",
+      weather_feels: "сезілуі",
+      weather_wind: "жел",
+      weather_wind_max: "Жел",
+      weather_precip: "Жауын-шашын ықтималдығы",
+      weather_ms: "м/с",
+      weather_loading: "Болжам жүктелуде…",
+      weather_pending: "Бұл күндердің болжамы сапар жақындағанда шығады.",
+      weather_error: "Болжамды жүктеу мүмкін болмады. Бетті кейінірек жаңартып көріңіз.",
+      weather_source: "Дереккөз: Open-Meteo · жаңартылды",
+      music_on: "Музыканы қосу",
+      music_off: "Музыканы өшіру"
     }
   },
 
@@ -289,14 +334,14 @@ window.AGALAR_DATA = {
         },
         {
           time: "19:00–00:00",
-          title_ru: "Баня Tengovka Ethno, программа «Алтын шипасы»",
-          title_kz: "Tengovka Ethno моншасы, «Алтын шипасы» бағдарламасы",
-          venue_ru: "Теньговка Ethno",
-          venue_kz: "Теньговка Ethno",
-          about_ru: "Комплекс сакских бань: парная на дровах, солёный бассейн, купели и банный чан. Шоссе Алаш, 140/2.",
-          about_kz: "Сақ моншалары кешені: отынмен жағылатын бу бөлмесі, тұзды бассейн, купельдер және шан. Алаш тас жолы, 140/2.",
+          title_ru: "Баня Ozen Premium",
+          title_kz: "Ozen Premium моншасы",
+          venue_ru: "Ozen Premium",
+          venue_kz: "Ozen Premium",
+          about_ru: "с. Кызылсуат, ул. Жас Тилек, 27",
+          about_kz: "Қызылсуат ауылы, Жас Тілек к-сі, 27",
           website: "",
-          map: "https://2gis.kz/astana/firm/70000001086785933"
+          map: "https://2gis.kz/astana/geo/70000001117452895"
         },
         {
           time: "~00:30",

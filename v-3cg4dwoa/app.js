@@ -165,6 +165,9 @@
     document.querySelectorAll(".lang__btn").forEach(function (b) { b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang)); });
     var grp = document.querySelector(".lang"); if (grp) grp.setAttribute("aria-label", t("lang_label", lang));
     renderMeta(lang); renderFriends(lang); renderProgram(lang);
+    // let extras.js (weather, music) re-render their texts
+    window.AGALAR_LANG = lang;
+    try { document.dispatchEvent(new CustomEvent("agalar:lang", { detail: { lang: lang } })); } catch (e) {}
   }
 
   function setLang(lang) {
