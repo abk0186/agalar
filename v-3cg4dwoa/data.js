@@ -285,7 +285,12 @@ window.AGALAR_DATA = {
         {
           time: "01:35",
           title_ru: "Встреча в аэропорту, трансфер и заселение в гостиницу",
-          title_kz: "Әуежайда қарсы алу, трансфер және қонақүйге орналасу"
+          title_kz: "Әуежайда қарсы алу, трансфер және қонақүйге орналасу",
+          venue_ru: "Asyr Turan Hotel",
+          venue_kz: "Asyr Turan Hotel",
+          address_ru: "ул. Абикен Бектуров, 4/1",
+          address_kz: "Әбікен Бектұров к-сі, 4/1",
+          map: "https://2gis.kz/astana/geo/70000001110563732"
         },
         {
           time: "08:30",
