@@ -27,6 +27,7 @@
  *     time             free text, e.g. "~09:00–11:00"
  *     title_ru/_kz     what happens
  *     venue_ru/_kz     venue name (optional)
+ *     address_ru/_kz   street address, shown as text under the venue (optional)
  *     about_ru/_kz     1–2 lines about the venue (optional)
  *     website          venue website (optional)
  *     map              2GIS / map link (optional)
@@ -296,6 +297,8 @@ window.AGALAR_DATA = {
           title_kz: "Арманның үйінде таңғы ас",
           venue_ru: "Vela House, таунхаус",
           venue_kz: "Vela House, таунхаус",
+          address_ru: "ул. Никола Тесла, 1",
+          address_kz: "Никола Тесла к-сі, 1",
           map: "https://2gis.kz/astana/geo/70030076391877278/71.434769,51.059728"
         },
         {
@@ -304,6 +307,8 @@ window.AGALAR_DATA = {
           title_kz: "«АЛЖИР» мұражайына сапар, экскурсия",
           venue_ru: "Музейно-мемориальный комплекс «АЛЖИР»",
           venue_kz: "«АЛЖИР» мұражай-мемориалдық кешені",
+          address_ru: "с. Акмол, ул. Линейная, 2Б",
+          address_kz: "Ақмол ауылы, Линейная к-сі, 2Б",
           about_ru: "Мемориал жертвам политических репрессий на месте Акмолинского лагеря жён изменников Родины, через который прошли более 18 тысяч женщин. Село Акмол (Малиновка), ~40 км от Астаны.",
           about_kz: "Саяси қуғын-сүргін құрбандарына арналған мемориал: 18 мыңнан астам әйел өткен Ақмола лагерінің орнында. Ақмол (Малиновка) ауылы, Астанадан ~40 км.",
           website: "https://museum-alzhir.kz/ru/",
@@ -322,8 +327,10 @@ window.AGALAR_DATA = {
           note_kz: "Тимурдың бизнесі",
           venue_ru: "FARШ · ТЦ Abu Dhabi Plaza",
           venue_kz: "FARШ · Abu Dhabi Plaza СО",
-          about_ru: "Премиальные крафтовые бургеры из мраморного мяса. Ул. Сыганак, 60/5, 1 этаж.",
-          about_kz: "Мәрмәр еттен жасалған премиум крафт бургерлер. Сығанақ к-сі, 60/5, 1-қабат.",
+          address_ru: "ул. Сыганак, 60/5, 1 этаж",
+          address_kz: "Сығанақ к-сі, 60/5, 1-қабат",
+          about_ru: "Премиальные крафтовые бургеры из мраморного мяса.",
+          about_kz: "Мәрмәр еттен жасалған премиум крафт бургерлер.",
           website: "https://farsh-burger.kz/",
           map: "https://2gis.kz/astana/firm/70000001050092804"
         },
@@ -333,6 +340,8 @@ window.AGALAR_DATA = {
           title_kz: "Vista School мектебіне бару",
           venue_ru: "Vista School",
           venue_kz: "Vista School",
+          address_ru: "просп. Ракымжан Кошкарбаев, 11/2",
+          address_kz: "Рақымжан Қошқарбаев даңғылы, 11/2",
           map: "https://2gis.kz/astana/geo/70000001081147544"
         },
         {
@@ -341,6 +350,8 @@ window.AGALAR_DATA = {
           title_kz: "Harmony Global School мектебіне бару",
           venue_ru: "Harmony Global School",
           venue_kz: "Harmony Global School",
+          address_ru: "просп. Ракымжан Кошкарбаев, 6",
+          address_kz: "Рақымжан Қошқарбаев даңғылы, 6",
           map: "https://2gis.kz/astana/geo/70000001113778269"
         },
         {
@@ -349,8 +360,8 @@ window.AGALAR_DATA = {
           title_kz: "Ozen Premium моншасы",
           venue_ru: "Ozen Premium",
           venue_kz: "Ozen Premium",
-          about_ru: "с. Кызылсуат, ул. Жас Тилек, 27",
-          about_kz: "Қызылсуат ауылы, Жас Тілек к-сі, 27",
+          address_ru: "с. Кызылсуат, ул. Жас Тилек, 27",
+          address_kz: "Қызылсуат ауылы, Жас Тілек к-сі, 27",
           website: "",
           map: "https://2gis.kz/astana/geo/70000001117452895"
         },
@@ -371,6 +382,8 @@ window.AGALAR_DATA = {
           title_kz: "Master Coffee-де таңғы ас",
           venue_ru: "Master Coffee",
           venue_kz: "Master Coffee",
+          address_ru: "ул. Шамши Калдаяков, 3",
+          address_kz: "Шәмші Қалдаяқов к-сі, 3",
           map: "https://2gis.kz/astana/geo/70000001105208365"
         },
         {
@@ -379,8 +392,10 @@ window.AGALAR_DATA = {
           title_kz: "«Игілік жәрмеңкесі» қайырымдылық жәрмеңкесі",
           venue_ru: "ОФ «Ybyrai Joly» · Казмедиа Центр",
           venue_kz: "«Ыбырай жолы» қоғамдық қоры · Қазмедиа орталығы",
-          about_ru: "Фонд помогает детям, оставшимся без попечения родителей, получить качественное образование; сборы ярмарки идут на их будущее. Казмедиа Центр, ул. Кунаева, 4.",
-          about_kz: "Қор ата-ана қамқорлығынан айырылған балалардың сапалы білім алуына көмектеседі; жәрмеңкеден түскен қаражат олардың болашағына жұмсалады. Қазмедиа орталығы, Д. Қонаев к-сі, 4.",
+          address_ru: "ул. Кунаева, 4",
+          address_kz: "Д. Қонаев к-сі, 4",
+          about_ru: "Фонд помогает детям, оставшимся без попечения родителей, получить качественное образование; сборы ярмарки идут на их будущее.",
+          about_kz: "Қор ата-ана қамқорлығынан айырылған балалардың сапалы білім алуына көмектеседі; жәрмеңкеден түскен қаражат олардың болашағына жұмсалады.",
           website: "",
           map: "https://2gis.kz/astana/firm/70000001018120847",
           links: [
@@ -400,8 +415,8 @@ window.AGALAR_DATA = {
           time: "~16:30",
           title_ru: "Чай у Асета дома",
           title_kz: "Асеттің үйінде шай",
-          venue_ru: "улица Камбар Ата, 2",
-          venue_kz: "Қамбар Ата көшесі, 2",
+          address_ru: "ул. Камбар Ата, 2",
+          address_kz: "Қамбар Ата к-сі, 2",
           map: "https://2gis.kz/astana/geo/9570784907493903/71.235774,51.122416"
         },
         {

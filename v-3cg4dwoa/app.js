@@ -125,10 +125,10 @@
     var days = DATA.days || [];
     wrap.innerHTML = days.map(function (d, i) {
       var items = (d.items || []).map(function (it) {
-        var venue = pick(it, "venue", lang), about = pick(it, "about", lang);
+        var venue = pick(it, "venue", lang), about = pick(it, "about", lang), addr = pick(it, "address", lang);
         var site = safeUrl(it.website), map = safeUrl(it.map);
         var extra = (it.links || []).filter(function (l) { return safeUrl(l.url); });
-        var rich = !!(venue || site || map || extra.length);
+        var rich = !!(venue || addr || site || map || extra.length);
         var links = "";
         if (site) links += ext(site, "pill", icon("i-globe") + "<span>" + esc(t("btn_website", lang)) + "</span>");
         extra.forEach(function (l) { links += ext(safeUrl(l.url), "pill", icon(l.type === "instagram" ? "i-instagram" : "i-globe") + "<span>" + esc(pick(l, "label", lang) || t("btn_website", lang)) + "</span>"); });
@@ -139,6 +139,7 @@
           card = '<div class="tl__card">' +
             (note ? '<span class="tl__tag">' + esc(note) + "</span>" : "") +
             (venue ? '<p class="tl__venue">' + esc(venue) + "</p>" : "") +
+            (addr ? '<p class="tl__addr">' + esc(addr) + "</p>" : "") +
             (about ? '<p class="tl__about">' + esc(about) + "</p>" : "") +
             (links ? '<div class="tl__links">' + links + "</div>" : "") + "</div>";
         } else if (about) {
