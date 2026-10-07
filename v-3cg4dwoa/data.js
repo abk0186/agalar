@@ -328,9 +328,20 @@ window.AGALAR_DATA = {
           map: "https://2gis.kz/astana/firm/70000001050092804"
         },
         {
-          time: "~15:30",
-          title_ru: "Посещение общежития / школы, построенных братьями",
-          title_kz: "Ағалар салған жатақханаға / мектепке бару"
+          time: "15:30",
+          title_ru: "Посещение школы Vista School",
+          title_kz: "Vista School мектебіне бару",
+          venue_ru: "Vista School",
+          venue_kz: "Vista School",
+          map: "https://2gis.kz/astana/geo/70000001081147544"
+        },
+        {
+          time: "17:00",
+          title_ru: "Посещение школы Harmony Global School",
+          title_kz: "Harmony Global School мектебіне бару",
+          venue_ru: "Harmony Global School",
+          venue_kz: "Harmony Global School",
+          map: "https://2gis.kz/astana/geo/70000001113778269"
         },
         {
           time: "19:00–00:00",
@@ -356,10 +367,11 @@ window.AGALAR_DATA = {
       items: [
         {
           time: "~09:00",
-          title_ru: "Завтрак в кофейне",
-          title_kz: "Кофеханада таңғы ас",
-          about_ru: "Место уточняется.",
-          about_kz: "Орны нақтыланады."
+          title_ru: "Завтрак в Master Coffee",
+          title_kz: "Master Coffee-де таңғы ас",
+          venue_ru: "Master Coffee",
+          venue_kz: "Master Coffee",
+          map: "https://2gis.kz/astana/geo/70000001105208365"
         },
         {
           time: "~10:00–12:00",
