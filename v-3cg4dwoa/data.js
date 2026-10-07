@@ -268,10 +268,11 @@ window.AGALAR_DATA = {
       name_ru: "Тимур", name_kz: "Тимур",
       handle: "timasatybaldyuly",
       photo: "/v-3cg4dwoa/assets/friends/timasatybaldyuly.jpg",
-      role_ru: "Владелец производственной компании",
-      role_kz: "Өндірістік компанияның иесі",
+      role_ru: "Владелец производственной компании «ЦелинМаш»: насосное оборудование и блочно-модульные насосные станции",
+      role_kz: "«ЦелинМаш» өндірістік компаниясының иесі: сорғы жабдықтары және блоктық-модульдік сорғы станциялары",
       links: [
-        { type: "instagram", url: "https://www.instagram.com/timasatybaldyuly/" }
+        { type: "instagram", url: "https://www.instagram.com/timasatybaldyuly/" },
+        { type: "website", label: "ЦелинМаш", url: "https://pkcm.kz/" }
       ]
     }
   ],
