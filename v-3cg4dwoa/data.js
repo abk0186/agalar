@@ -407,6 +407,9 @@ window.AGALAR_DATA = {
           time: "~12:30",
           title_ru: "Конная прогулка, обед на месте",
           title_kz: "Атпен серуендеу, түскі ас сол жерде",
+          address_ru: "пос. Караоткель, ул. Женис, 32",
+          address_kz: "Қараөткел ауылы, Жеңіс к-сі, 32",
+          map: "https://2gis.kz/astana/geo/70000001101400596/71.214796,51.138278",
           links: [
             { type: "instagram", label: "Dala Tynysy", url: "https://www.instagram.com/dala.tynysy/" }
           ]
