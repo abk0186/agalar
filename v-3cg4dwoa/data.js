@@ -34,6 +34,11 @@
  *     note_ru/_kz      small gold tag next to the venue, e.g. "Бизнес Тимура" (optional)
  *     links[]          extra links (optional): { label_ru, label_kz, url, type? }
  *                        type: "instagram" -> Instagram icon (default: globe)
+ *     distance_km      road distance from the previous point, km (optional; < 10 shown with one decimal)
+ *     drive_min        driving time for that leg, minutes (optional; shown next to distance_km)
+ *     drive_from_ru/_kz  custom "from" text, e.g. "от аэропорта" (optional;
+ *                        default: ui.drive_from = "от предыдущей точки")
+ *                      Distances: OSRM car routing between 2GIS coordinates (07.10.2026); drive times set by the organizer.
  *
  * weather    - live forecast block + background animation (Open-Meteo, no key)
  *   lat / lon / timezone, days[] = visit dates "YYYY-MM-DD"
@@ -95,7 +100,13 @@ window.AGALAR_DATA = {
       weather_error: "Не удалось загрузить прогноз. Попробуйте обновить страницу позже.",
       weather_source: "Данные: Open-Meteo · обновлено",
       music_on: "Включить музыку",
-      music_off: "Выключить музыку"
+      music_off: "Выключить музыку",
+      drive_from: "от предыдущей точки",
+      drive_km: "км",
+      drive_min: "мин",
+      drive_h: "ч",
+      drive_dist_label: "Расстояние по дороге",
+      drive_time_label: "Время в пути"
     },
     kz: {
       doc_title: "Ақтаулық ағалар Астанада · 10–11 қазан",
@@ -133,7 +144,13 @@ window.AGALAR_DATA = {
       weather_error: "Болжамды жүктеу мүмкін болмады. Бетті кейінірек жаңартып көріңіз.",
       weather_source: "Дереккөз: Open-Meteo · жаңартылды",
       music_on: "Музыканы қосу",
-      music_off: "Музыканы өшіру"
+      music_off: "Музыканы өшіру",
+      drive_from: "алдыңғы нүктеден",
+      drive_km: "км",
+      drive_min: "мин",
+      drive_h: "сағ",
+      drive_dist_label: "Жолдағы қашықтық",
+      drive_time_label: "Жолдағы уақыт"
     }
   },
 
@@ -290,7 +307,11 @@ window.AGALAR_DATA = {
           venue_kz: "Asyr Turan Hotel",
           address_ru: "ул. Абикен Бектуров, 4/1",
           address_kz: "Әбікен Бектұров к-сі, 4/1",
-          map: "https://2gis.kz/astana/geo/70000001110563732"
+          map: "https://2gis.kz/astana/geo/70000001110563732",
+          distance_km: 13,
+          drive_min: 25,
+          drive_from_ru: "от аэропорта",
+          drive_from_kz: "әуежайдан"
         },
         {
           time: "08:30",
@@ -310,7 +331,9 @@ window.AGALAR_DATA = {
           venue_kz: "Vela House, таунхаус",
           address_ru: "ул. Никола Тесла, 1",
           address_kz: "Никола Тесла к-сі, 1",
-          map: "https://2gis.kz/astana/geo/70030076391877278/71.434769,51.059728"
+          map: "https://2gis.kz/astana/geo/70030076391877278/71.434769,51.059728",
+          distance_km: 9.9,
+          drive_min: 25
         },
         {
           time: "~11:00",
@@ -323,7 +346,9 @@ window.AGALAR_DATA = {
           about_ru: "Мемориал жертвам политических репрессий на месте Акмолинского лагеря жён изменников Родины, через который прошли более 18 тысяч женщин. Село Акмол (Малиновка), ~40 км от Астаны.",
           about_kz: "Саяси қуғын-сүргін құрбандарына арналған мемориал: 18 мыңнан астам әйел өткен Ақмола лагерінің орнында. Ақмол (Малиновка) ауылы, Астанадан ~40 км.",
           website: "https://museum-alzhir.kz/ru/",
-          map: "https://2gis.kz/geo/70030076493099387"
+          map: "https://2gis.kz/geo/70030076493099387",
+          distance_km: 46,
+          drive_min: 50
         },
         {
           time: "~13:30",
@@ -343,7 +368,11 @@ window.AGALAR_DATA = {
           about_ru: "Премиальные крафтовые бургеры из мраморного мяса.",
           about_kz: "Мәрмәр еттен жасалған премиум крафт бургерлер.",
           website: "https://farsh-burger.kz/",
-          map: "https://2gis.kz/astana/firm/70000001050092804"
+          map: "https://2gis.kz/astana/firm/70000001050092804",
+          distance_km: 37,
+          drive_min: 50,
+          drive_from_ru: "от музея «АЛЖИР»",
+          drive_from_kz: "«АЛЖИР» мұражайынан"
         },
         {
           time: "15:30",
@@ -353,7 +382,9 @@ window.AGALAR_DATA = {
           venue_kz: "Vista School",
           address_ru: "просп. Ракымжан Кошкарбаев, 11/2",
           address_kz: "Рақымжан Қошқарбаев даңғылы, 11/2",
-          map: "https://2gis.kz/astana/geo/70000001081147544"
+          map: "https://2gis.kz/astana/geo/70000001081147544",
+          distance_km: 4.8,
+          drive_min: 15
         },
         {
           time: "17:00",
@@ -363,7 +394,9 @@ window.AGALAR_DATA = {
           venue_kz: "Harmony Global School",
           address_ru: "просп. Ракымжан Кошкарбаев, 6",
           address_kz: "Рақымжан Қошқарбаев даңғылы, 6",
-          map: "https://2gis.kz/astana/geo/70000001113778269"
+          map: "https://2gis.kz/astana/geo/70000001113778269",
+          distance_km: 1.4,
+          drive_min: 5
         },
         {
           time: "19:00–00:00",
@@ -374,7 +407,9 @@ window.AGALAR_DATA = {
           address_ru: "с. Кызылсуат, ул. Жас Тилек, 27",
           address_kz: "Қызылсуат ауылы, Жас Тілек к-сі, 27",
           website: "",
-          map: "https://2gis.kz/astana/geo/70000001117452895"
+          map: "https://2gis.kz/astana/geo/70000001117452895",
+          distance_km: 16,
+          drive_min: 30
         },
         {
           time: "~00:30",
@@ -384,7 +419,9 @@ window.AGALAR_DATA = {
           venue_kz: "Asyr Turan Hotel",
           address_ru: "ул. Абикен Бектуров, 4/1",
           address_kz: "Әбікен Бектұров к-сі, 4/1",
-          map: "https://2gis.kz/astana/geo/70000001110563732"
+          map: "https://2gis.kz/astana/geo/70000001110563732",
+          distance_km: 17,
+          drive_min: 30
         }
       ]
     },
@@ -400,7 +437,11 @@ window.AGALAR_DATA = {
           venue_kz: "Master Coffee",
           address_ru: "ул. Шамши Калдаяков, 3",
           address_kz: "Шәмші Қалдаяқов к-сі, 3",
-          map: "https://2gis.kz/astana/geo/70000001105208365"
+          map: "https://2gis.kz/astana/geo/70000001105208365",
+          distance_km: 5.4,
+          drive_min: 20,
+          drive_from_ru: "от гостиницы",
+          drive_from_kz: "қонақүйден"
         },
         {
           time: "~10:00–12:00",
@@ -414,18 +455,22 @@ window.AGALAR_DATA = {
           about_kz: "Қор ата-ана қамқорлығынан айырылған балалардың сапалы білім алуына көмектеседі; жәрмеңкеден түскен қаражат олардың болашағына жұмсалады.",
           website: "",
           map: "https://2gis.kz/astana/firm/70000001018120847",
+          distance_km: 4.0,
+          drive_min: 10,
           links: [
             { label_ru: "Фонд Ybyrai Joly", label_kz: "«Ыбырай жолы» қоры", url: "https://ybyraifund.com/" },
             { label_ru: "Казмедиа Центр", label_kz: "Қазмедиа орталығы", url: "https://qazmedia.kz/ru/" }
           ]
         },
         {
-          time: "~12:30",
+          time: "~13:00",
           title_ru: "Конная прогулка, обед на месте",
           title_kz: "Атпен серуендеу, түскі ас сол жерде",
           address_ru: "пос. Караоткель, ул. Женис, 32",
           address_kz: "Қараөткел ауылы, Жеңіс к-сі, 32",
           map: "https://2gis.kz/astana/geo/70000001101400596/71.214796,51.138278",
+          distance_km: 20,
+          drive_min: 40,
           links: [
             { type: "instagram", label: "Dala Tynysy", url: "https://www.instagram.com/dala.tynysy/" }
           ]
@@ -436,12 +481,18 @@ window.AGALAR_DATA = {
           title_kz: "Асеттің үйінде шай",
           address_ru: "ул. Камбар Ата, 2",
           address_kz: "Қамбар Ата к-сі, 2",
-          map: "https://2gis.kz/astana/geo/9570784907493903/71.235774,51.122416"
+          map: "https://2gis.kz/astana/geo/9570784907493903/71.235774,51.122416",
+          distance_km: 3.2,
+          drive_min: 10
         },
         {
           time: "18:30",
           title_ru: "Выезд в аэропорт, проводы гостей",
-          title_kz: "Әуежайға жол тарту, қонақтарды шығарып салу"
+          title_kz: "Әуежайға жол тарту, қонақтарды шығарып салу",
+          distance_km: 25,
+          drive_min: 25,
+          drive_from_ru: "до аэропорта",
+          drive_from_kz: "әуежайға дейін"
         }
       ]
     }

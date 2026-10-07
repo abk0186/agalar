@@ -197,6 +197,13 @@ a { color: inherit; }
 .tl__about { margin: 0; color: var(--muted); font-size: 14.5px; line-height: 1.55; }
 .tl__note { margin: 4px 0 0; color: var(--dim); font-size: 14px; font-style: italic; }
 .tl__links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.tl__drive { display: flex; flex-wrap: wrap; align-items: center; column-gap: 14px; row-gap: 2px; margin: 5px 0 0;
+  color: var(--muted); font-size: 13.5px; line-height: 1.4; font-variant-numeric: lining-nums tabular-nums; }
+.tl__drive-part { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.tl__drive-part svg { width: 15px; height: 15px; flex: none; color: var(--gold); }
+.tl__drive-val { color: var(--gold-2); font-weight: 600; letter-spacing: .01em; }
+.tl__drive-from { color: var(--dim); font-size: 12.5px; }
+.tl--rich .tl__drive + .tl__card { margin-top: 8px; }
 .tl__card > .tl__links:first-child { margin-top: 0; }
 .pill { display: inline-flex; align-items: center; gap: 7px; min-height: 36px; padding: 0 14px 0 11px; border-radius: 999px; text-decoration: none;
   font-size: 13px; font-weight: 600; letter-spacing: .02em; color: var(--gold-2); border: 1px solid var(--line-strong); background: rgba(212,176,106,.05);

@@ -120,6 +120,31 @@
     document.getElementById("friends").hidden = !list.length;
   }
 
+  function fmtKm(km) {
+    var n = Number(km);
+    return n < 10 ? n.toFixed(1).replace(".", ",") : String(Math.round(n));
+  }
+  function fmtMin(min, lang) {
+    var m = Math.round(Number(min)), h = Math.floor(m / 60), r = m % 60;
+    var unitMin = t("drive_min", lang), unitH = t("drive_h", lang);
+    if (!h) return m + " " + unitMin;
+    return h + " " + unitH + (r ? " " + r + " " + unitMin : "");
+  }
+  function driveLine(it, lang) {
+    var km = it.distance_km, min = it.drive_min;
+    var hasKm = km != null && km !== "" && !isNaN(Number(km));
+    var hasMin = min != null && min !== "" && !isNaN(Number(min));
+    if (!hasKm && !hasMin) return "";
+    var from = pick(it, "drive_from", lang) || t("drive_from", lang);
+    var html = '<p class="tl__drive">';
+    if (hasKm) html += '<span class="tl__drive-part" title="' + esc(t("drive_dist_label", lang)) + '">' + icon("i-route") +
+      '<span class="tl__drive-val">≈ ' + esc(fmtKm(km)) + " " + esc(t("drive_km", lang)) + "</span></span>";
+    if (hasMin) html += '<span class="tl__drive-part" title="' + esc(t("drive_time_label", lang)) + '">' + icon("i-clock") +
+      '<span class="tl__drive-val">~' + esc(fmtMin(min, lang)) + "</span></span>";
+    if (from) html += '<span class="tl__drive-from">' + esc(from) + "</span>";
+    return html + "</p>";
+  }
+
   function renderProgram(lang) {
     var wrap = document.getElementById("program-days");
     var days = DATA.days || [];
@@ -147,7 +172,7 @@
         }
         return '<li class="tl' + (rich ? " tl--rich" : "") + '">' +
           '<p class="tl__time">' + esc(it.time) + "</p>" +
-          '<div class="tl__body"><h4 class="tl__title">' + esc(pick(it, "title", lang)) + "</h4>" + card + "</div></li>";
+          '<div class="tl__body"><h4 class="tl__title">' + esc(pick(it, "title", lang)) + "</h4>" + driveLine(it, lang) + card + "</div></li>";
       }).join("");
       return '<article class="day">' +
         '<header class="day__head"><span class="day__num" aria-hidden="true">' + (i + 1) + '</span>' +
