@@ -295,7 +295,12 @@ window.AGALAR_DATA = {
         {
           time: "08:30",
           title_ru: "Забираем гостей из гостиницы",
-          title_kz: "Қонақтарды қонақүйден алып кетеміз"
+          title_kz: "Қонақтарды қонақүйден алып кетеміз",
+          venue_ru: "Asyr Turan Hotel",
+          venue_kz: "Asyr Turan Hotel",
+          address_ru: "ул. Абикен Бектуров, 4/1",
+          address_kz: "Әбікен Бектұров к-сі, 4/1",
+          map: "https://2gis.kz/astana/geo/70000001110563732"
         },
         {
           time: "~09:00–11:00",
@@ -374,7 +379,12 @@ window.AGALAR_DATA = {
         {
           time: "~00:30",
           title_ru: "Трансфер в гостиницу",
-          title_kz: "Қонақүйге трансфер"
+          title_kz: "Қонақүйге трансфер",
+          venue_ru: "Asyr Turan Hotel",
+          venue_kz: "Asyr Turan Hotel",
+          address_ru: "ул. Абикен Бектуров, 4/1",
+          address_kz: "Әбікен Бектұров к-сі, 4/1",
+          map: "https://2gis.kz/astana/geo/70000001110563732"
         }
       ]
     },
