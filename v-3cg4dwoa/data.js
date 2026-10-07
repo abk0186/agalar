@@ -36,8 +36,8 @@
  *                        type: "instagram" -> Instagram icon (default: globe)
  *     distance_km      road distance from the previous point, km (optional; < 10 shown with one decimal)
  *     drive_min        driving time for that leg, minutes (optional; shown next to distance_km)
- *     drive_from_ru/_kz  custom "from" text, e.g. "от аэропорта" (optional;
- *                        default: ui.drive_from = "от предыдущей точки")
+ *     drive_from_ru/_kz  origin of the leg, e.g. "от Vela House" / "Vela House-тан"
+ *                        (set it on every leg; ui.drive_from is only a fallback)
  *                      Distances: OSRM car routing between 2GIS coordinates (07.10.2026); drive times set by the organizer.
  *
  * weather    - live forecast block + background animation (Open-Meteo, no key)
@@ -333,7 +333,9 @@ window.AGALAR_DATA = {
           address_kz: "Никола Тесла к-сі, 1",
           map: "https://2gis.kz/astana/geo/70030076391877278/71.434769,51.059728",
           distance_km: 9.9,
-          drive_min: 25
+          drive_min: 25,
+          drive_from_ru: "от гостиницы Asyr Turan",
+          drive_from_kz: "Asyr Turan қонақүйінен"
         },
         {
           time: "~11:00",
@@ -348,7 +350,9 @@ window.AGALAR_DATA = {
           website: "https://museum-alzhir.kz/ru/",
           map: "https://2gis.kz/geo/70030076493099387",
           distance_km: 46,
-          drive_min: 50
+          drive_min: 50,
+          drive_from_ru: "от Vela House",
+          drive_from_kz: "Vela House-тан"
         },
         {
           time: "~13:30",
@@ -384,7 +388,9 @@ window.AGALAR_DATA = {
           address_kz: "Рақымжан Қошқарбаев даңғылы, 11/2",
           map: "https://2gis.kz/astana/geo/70000001081147544",
           distance_km: 4.8,
-          drive_min: 15
+          drive_min: 15,
+          drive_from_ru: "от FARШ",
+          drive_from_kz: "FARШ-тан"
         },
         {
           time: "17:00",
@@ -396,7 +402,9 @@ window.AGALAR_DATA = {
           address_kz: "Рақымжан Қошқарбаев даңғылы, 6",
           map: "https://2gis.kz/astana/geo/70000001113778269",
           distance_km: 1.4,
-          drive_min: 5
+          drive_min: 5,
+          drive_from_ru: "от Vista School",
+          drive_from_kz: "Vista School-дан"
         },
         {
           time: "19:00–00:00",
@@ -409,7 +417,9 @@ window.AGALAR_DATA = {
           website: "",
           map: "https://2gis.kz/astana/geo/70000001117452895",
           distance_km: 16,
-          drive_min: 30
+          drive_min: 30,
+          drive_from_ru: "от Harmony Global School",
+          drive_from_kz: "Harmony Global School-дан"
         },
         {
           time: "~00:30",
@@ -421,7 +431,9 @@ window.AGALAR_DATA = {
           address_kz: "Әбікен Бектұров к-сі, 4/1",
           map: "https://2gis.kz/astana/geo/70000001110563732",
           distance_km: 17,
-          drive_min: 30
+          drive_min: 30,
+          drive_from_ru: "от Ozen Premium",
+          drive_from_kz: "Ozen Premium-нан"
         }
       ]
     },
@@ -440,8 +452,8 @@ window.AGALAR_DATA = {
           map: "https://2gis.kz/astana/geo/70000001105208365",
           distance_km: 5.4,
           drive_min: 20,
-          drive_from_ru: "от гостиницы",
-          drive_from_kz: "қонақүйден"
+          drive_from_ru: "от гостиницы Asyr Turan",
+          drive_from_kz: "Asyr Turan қонақүйінен"
         },
         {
           time: "~10:00–12:00",
@@ -457,6 +469,8 @@ window.AGALAR_DATA = {
           map: "https://2gis.kz/astana/firm/70000001018120847",
           distance_km: 4.0,
           drive_min: 10,
+          drive_from_ru: "от Master Coffee",
+          drive_from_kz: "Master Coffee-ден",
           links: [
             { label_ru: "Фонд Ybyrai Joly", label_kz: "«Ыбырай жолы» қоры", url: "https://ybyraifund.com/" },
             { label_ru: "Казмедиа Центр", label_kz: "Қазмедиа орталығы", url: "https://qazmedia.kz/ru/" }
@@ -471,6 +485,8 @@ window.AGALAR_DATA = {
           map: "https://2gis.kz/astana/geo/70000001101400596/71.214796,51.138278",
           distance_km: 20,
           drive_min: 40,
+          drive_from_ru: "от Казмедиа Центра",
+          drive_from_kz: "Қазмедиа орталығынан",
           links: [
             { type: "instagram", label: "Dala Tynysy", url: "https://www.instagram.com/dala.tynysy/" }
           ]
@@ -483,7 +499,9 @@ window.AGALAR_DATA = {
           address_kz: "Қамбар Ата к-сі, 2",
           map: "https://2gis.kz/astana/geo/9570784907493903/71.235774,51.122416",
           distance_km: 3.2,
-          drive_min: 10
+          drive_min: 10,
+          drive_from_ru: "от Dala Tynysy",
+          drive_from_kz: "Dala Tynysy-дан"
         },
         {
           time: "18:30",
