@@ -226,7 +226,7 @@ window.AGALAR_DATA = {
     {
       name_ru: "Арман", name_kz: "Арман",
       handle: "arman_tyutyukov",
-      photo: "/v-3cg4dwoa/assets/friends/arman_tyutyukov.jpg",
+      photo: "/v-3cg4dwoa/assets/friends/arman_tyutyukov.jpg?v=2",
       role_ru: "Компания «Оценка ЕКС»: оценка и экспертиза, профессиональная оценочная деятельность. Международный оценщик REV.",
       role_kz: "«Оценка ЕКС» компаниясы: бағалау және сараптама, кәсіби бағалау қызметі. REV халықаралық бағалаушысы.",
       links: [
