@@ -137,6 +137,96 @@
     setBackground();
   }
 
+  /* ================= Guest info: Astana vs Aktau ================= */
+  var GI = DATA.guest_info || null;
+  var gi = { data: null, live: false, updated: null };
+  var GI_KEY = "agalar_gi_v1";
+  function fmt(tpl, map) { return String(tpl || "").replace(/\{(\w+)\}/g, function (m, k) { return map[k] != null ? map[k] : m; }); }
+  function avg(a) { var s = 0, n = 0; (a || []).forEach(function (v) { if (v != null && !isNaN(v)) { s += v; n++; } }); return n ? s / n : null; }
+  function giUrl() {
+    var d = CFG.days || [];
+    return "https://api.open-meteo.com/v1/forecast?latitude=" + GI.astana.lat + "," + GI.aktau.lat +
+      "&longitude=" + GI.astana.lon + "," + GI.aktau.lon + "&timezone=" + encodeURIComponent(CFG.timezone || "Asia/Almaty") +
+      "&wind_speed_unit=ms&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,wind_speed_10m_max" +
+      "&hourly=temperature_2m&start_date=" + d[0] + "&end_date=" + d[d.length - 1];
+  }
+  function giParse(list) {
+    if (!list || list.length < 2) throw new Error("bad");
+    var hh = ("0" + (GI.evening_hour || 20)).slice(-2) + ":00";
+    function city(x) {
+      var d = x.daily, h = x.hourly, out = { day: [], eve: [], min: [], pp: [], rain: [], wind: [], code: [] };
+      (CFG.days || []).forEach(function (iso) {
+        var k = d.time.indexOf(iso), e = h.time.indexOf(iso + "T" + hh);
+        if (k < 0 || e < 0) throw new Error("day missing");
+        out.day.push(d.temperature_2m_max[k]); out.eve.push(h.temperature_2m[e]); out.min.push(d.temperature_2m_min[k]);
+        out.pp.push(d.precipitation_probability_max[k]); out.rain.push(d.precipitation_sum[k]);
+        out.wind.push(d.wind_speed_10m_max[k]); out.code.push(d.weather_code[k]);
+      });
+      return out;
+    }
+    return { astana: city(list[0]), aktau: city(list[1]) };
+  }
+  function giLoad() {
+    if (!GI || !GI.astana || !GI.aktau || typeof fetch !== "function" || !(CFG.days || []).length) return;
+    try {
+      var c = JSON.parse(localStorage.getItem(GI_KEY) || "null");
+      if (c && c.data && Date.now() - c.ts < CACHE_MS) { gi = { data: c.data, live: true, updated: new Date(c.ts) }; giRender(); return; }
+    } catch (e) {}
+    getJSON(giUrl()).then(function (j) {
+      var data = giParse(j);
+      gi = { data: data, live: true, updated: new Date() };
+      try { localStorage.setItem(GI_KEY, JSON.stringify({ ts: Date.now(), data: data })); } catch (e) {}
+      giRender();
+    }).catch(function () { /* keep the baked-in forecast */ });
+  }
+  function giRender() {
+    var box = document.getElementById("guest-info-box");
+    if (!box || !GI) return;
+    var D = gi.data || GI.fallback;
+    if (!D || !D.astana || !D.aktau) { box.innerHTML = ""; return; }
+    var A = D.astana, K = D.aktau, L = lang(), ci = L === "kz" ? 2 : 1;
+    var aDay = avg(A.day), aEve = avg(A.eve), kDay = avg(K.day), kEve = avg(K.eve);
+    var night = Math.min.apply(null, A.min);
+    var d1 = Math.round(kDay) - Math.round(aDay), d2 = Math.round(kEve) - Math.round(aEve);
+    var lo = Math.min(d1, d2), hi = Math.max(d1, d2);
+    var diff = lo === hi ? String(lo) : lo + "–" + hi;
+    var text = fmt(hi >= 3 ? t("gi_text") : t("gi_text_same"), { day: deg(aDay), eve: deg(aEve), diff: diff, night: deg(night) });
+
+    var all = A.day.concat(A.eve, K.day, K.eve).filter(function (v) { return v != null; });
+    var sMin = Math.min(0, Math.min.apply(null, all)) - 2, sMax = Math.max.apply(null, all) + 2;
+    function bar(cls, name, v) {
+      var w = Math.max(6, Math.min(100, (v - sMin) / (sMax - sMin) * 100));
+      return '<div class="gi-bar gi-bar--' + cls + '"><span class="gi-bar__city">' + esc(name) + '</span>' +
+        '<span class="gi-bar__track"><span class="gi-bar__fill" style="width:' + w.toFixed(1) + '%"></span></span>' +
+        '<b class="gi-bar__val">' + deg(v) + "</b></div>";
+    }
+    function row(icon, label, a, k) {
+      var n = Math.round(k) - Math.round(a);
+      return '<div class="gi-row"><div class="gi-row__head"><svg aria-hidden="true"><use href="#' + icon + '"/></svg><span>' + esc(label) + "</span>" +
+        '<em class="gi-diff' + (n >= 3 ? "" : " gi-diff--same") + '">' + esc(n >= 3 ? fmt(t("gi_diff"), { n: n }) : t("gi_diff_same")) + "</em></div>" +
+        bar("astana", t("gi_city_astana"), a) + bar("aktau", t("gi_city_aktau"), k) + "</div>";
+    }
+    var cards = (CFG.days || []).map(function (iso, k) {
+      var w = wmo(A.code[k]);
+      return '<article class="gi-day"><header class="gi-day__head"><h3 class="gi-day__date">' + esc(dayLabel(iso)) + "</h3>" + wxIcon(w[0], false) + "</header>" +
+        row("wx-sun", t("gi_daytime"), A.day[k], K.day[k]) + row("wx-moon", t("gi_evening"), A.eve[k], K.eve[k]) +
+        '<p class="gi-day__cond">' + esc(t("gi_in_astana")) + ": " + esc(w[ci]) + " · " + esc(fmt(t("gi_wind"), { n: num(A.wind[k]) })) +
+        " · " + esc(fmt(t("gi_precip"), { n: num(A.pp[k]) })) + "</p></article>";
+    }).join("");
+
+    var ppMax = Math.max.apply(null, A.pp), rainSum = A.rain.reduce(function (s, v) { return s + (v || 0); }, 0), windMax = Math.max.apply(null, A.wind);
+    var pack = [["i-jacket", t("gi_pack_jacket")]];
+    if (night <= 5) pack.push(["i-hat", t("gi_pack_hat")]);
+    if (windMax >= 8) pack.push(["wx-wind", fmt(t("gi_pack_wind"), { n: num(windMax) })]);
+    pack.push(ppMax >= 40 || rainSum >= 1 ? ["i-umbrella", t("gi_pack_umbrella")] : ["i-umbrella-off", t("gi_pack_no_umbrella")]);
+    var packHtml = '<div class="gi-pack"><p class="gi-pack__title">' + esc(t("gi_pack_title")) + '</p><ul class="gi-pack__list">' +
+      pack.map(function (p) { return '<li><svg aria-hidden="true"><use href="#' + p[0] + '"/></svg><span>' + esc(p[1]) + "</span></li>"; }).join("") + "</ul></div>";
+
+    var src = gi.live && gi.updated ? fmt(t("gi_src_live"), { time: hhmm(gi.updated) }) : fmt(t("gi_src_static"), { time: (GI.fallback || {}).fetched || "" });
+    box.innerHTML = '<div class="gi-msg"><svg class="gi-msg__ico" aria-hidden="true"><use href="#i-jacket"/></svg><p>' + esc(text) + "</p></div>" +
+      '<div class="gi-days">' + cards + "</div>" + packHtml + '<p class="wx-src">' + esc(src) + "</p>";
+  }
+
   /* ---------- Background animation by CURRENT weather ---------- */
   function setBackground() {
     var el = document.getElementById("wx-bg");
@@ -268,10 +358,12 @@
   });
 
   /* ================= Init ================= */
-  document.addEventListener("agalar:lang", function () { render(); updateBtn(); });
+  document.addEventListener("agalar:lang", function () { render(); giRender(); updateBtn(); });
   render();
+  giRender();
   load(false);
-  setInterval(function () { if (!document.hidden) load(true); }, CACHE_MS);
+  giLoad();
+  setInterval(function () { if (!document.hidden) { load(true); giLoad(); } }, CACHE_MS);
   updateBtn();
   if (MUSIC.youtube_id && params.music !== "0") { loadYouTube(); attachGestures(); }
   else if (btn) btn.hidden = true;

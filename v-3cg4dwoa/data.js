@@ -58,6 +58,21 @@ window.AGALAR_DATA = {
     days: ["2026-10-10", "2026-10-11"]
   },
 
+  /* Guest info: Astana vs Aktau weather on the visit days (weather.days).
+   * JS refreshes from Open-Meteo on load; "fallback" is the forecast baked in on 09.10 13:11 (Asia/Almaty).
+   * day = daily max, eve = temperature at evening_hour local time, min = daily min, pp = max precipitation probability %,
+   * rain = precipitation sum mm, wind = max wind m/s, code = WMO weather code. */
+  guest_info: {
+    astana: { lat: 51.17, lon: 71.45 },
+    aktau:  { lat: 43.65, lon: 51.17 },
+    evening_hour: 20,
+    fallback: {
+      fetched: "09.10 13:11",
+      astana: { day: [10.6, 14.0], eve: [5.8, 6.6], min: [1.0, 1.3], pp: [0, 0], rain: [0.0, 0.0], wind: [2.55, 2.8], code: [3, 3] },
+      aktau:  { day: [24.3, 23.7], eve: [20.4, 18.7], min: [15.2, 13.3], pp: [10, 0], rain: [0.0, 0.0], wind: [4.31, 3.4], code: [3, 1] }
+    }
+  },
+
   music: {
     youtube_id: "azYCSJdY3GM",   /* «Dombyra 100 | OYU Special» */
     start: 6                     /* seconds */
@@ -99,6 +114,27 @@ window.AGALAR_DATA = {
       weather_pending: "Прогноз на эти дни появится ближе к дате визита.",
       weather_error: "Не удалось загрузить прогноз. Попробуйте обновить страницу позже.",
       weather_source: "Данные: Open-Meteo · обновлено",
+      gi_title: "Информация для гостей",
+      gi_lead: "Погода в Астане и Актау в дни визита",
+      gi_text: "Дорогие братья! В дни визита в Астане днём около {day}, а вечером около {eve} — на {diff}° прохладнее, чем в Актау. Ночью и ранним утром — около {night}. Просим учесть это и взять с собой верхнюю одежду — осеннюю утеплённую куртку.",
+      gi_text_same: "Дорогие братья! В дни визита в Астане днём около {day}, а вечером около {eve} — примерно как в Актау. Ночью и ранним утром — около {night}, так что лёгкая куртка пригодится.",
+      gi_city_astana: "Астана",
+      gi_city_aktau: "Актау",
+      gi_daytime: "Днём",
+      gi_evening: "Вечером, 20:00",
+      gi_diff: "холоднее на {n}°",
+      gi_diff_same: "почти одинаково",
+      gi_in_astana: "В Астане",
+      gi_wind: "ветер до {n} м/с",
+      gi_precip: "осадки {n}%",
+      gi_pack_title: "Что взять с собой",
+      gi_pack_jacket: "Осенняя утеплённая куртка",
+      gi_pack_hat: "Шапка или капюшон — на вечер и раннее утро",
+      gi_pack_umbrella: "Зонт — возможен дождь",
+      gi_pack_no_umbrella: "Зонт, по прогнозу, не понадобится",
+      gi_pack_wind: "Ветрено, до {n} м/с — пригодится ветровка",
+      gi_src_live: "Прогноз: Open-Meteo · обновлено {time}",
+      gi_src_static: "Прогноз: Open-Meteo · данные на {time}",
       music_on: "Включить музыку",
       music_off: "Выключить музыку",
       drive_from: "от предыдущей точки",
@@ -143,6 +179,27 @@ window.AGALAR_DATA = {
       weather_pending: "Бұл күндердің болжамы сапар жақындағанда шығады.",
       weather_error: "Болжамды жүктеу мүмкін болмады. Бетті кейінірек жаңартып көріңіз.",
       weather_source: "Дереккөз: Open-Meteo · жаңартылды",
+      gi_title: "Қонақтарға ақпарат",
+      gi_lead: "Сапар күндері Астана мен Ақтаудағы ауа райы",
+      gi_text: "Құрметті ағалар! Сапар күндері Астанада күндіз шамамен {day}, кешке қарай шамамен {eve} — бұл Ақтаудағыдан {diff}° салқын. Түнде және таңертең ерте ауа температурасы {night} шамасында. Соны ескеріп, сырт киім — жылы күздік күрте ала келуіңізді сұраймыз.",
+      gi_text_same: "Құрметті ағалар! Сапар күндері Астанада күндіз шамамен {day}, кешке қарай шамамен {eve} — Ақтаумен шамалас. Түнде және таңертең ерте ауа температурасы {night} шамасында, сондықтан жеңіл күрте артық болмайды.",
+      gi_city_astana: "Астана",
+      gi_city_aktau: "Ақтау",
+      gi_daytime: "Күндіз",
+      gi_evening: "Кешке, 20:00",
+      gi_diff: "{n}° салқын",
+      gi_diff_same: "шамалас",
+      gi_in_astana: "Астанада",
+      gi_wind: "жел {n} м/с дейін",
+      gi_precip: "жауын-шашын {n}%",
+      gi_pack_title: "Өзіңізбен бірге алыңыз",
+      gi_pack_jacket: "Жылы күздік күрте",
+      gi_pack_hat: "Кешке және ерте таңға — бас киім немесе капюшон",
+      gi_pack_umbrella: "Қолшатыр — жаңбыр жаууы мүмкін",
+      gi_pack_no_umbrella: "Болжам бойынша қолшатыр қажет болмайды",
+      gi_pack_wind: "Жел {n} м/с дейін — желден қорғайтын күрте керек болады",
+      gi_src_live: "Болжам: Open-Meteo · жаңартылды {time}",
+      gi_src_static: "Болжам: Open-Meteo · {time} мәліметі",
       music_on: "Музыканы қосу",
       music_off: "Музыканы өшіру",
       drive_from: "алдыңғы нүктеден",
@@ -380,13 +437,13 @@ window.AGALAR_DATA = {
         },
         {
           time: "15:30",
-          title_ru: "Посещение школы Vista School",
-          title_kz: "Vista School мектебіне бару",
-          venue_ru: "Vista School",
-          venue_kz: "Vista School",
-          address_ru: "просп. Ракымжан Кошкарбаев, 11/2",
-          address_kz: "Рақымжан Қошқарбаев даңғылы, 11/2",
-          map: "https://2gis.kz/astana/geo/70000001081147544",
+          title_ru: "Посещение школы Spectrum International School",
+          title_kz: "Spectrum International School мектебіне бару",
+          venue_ru: "Spectrum International School",
+          venue_kz: "Spectrum International School",
+          address_ru: "просп. Ракымжан Кошкарбаев, 11",
+          address_kz: "Рақымжан Қошқарбаев даңғылы, 11",
+          map: "https://2gis.kz/astana/geo/70000001024311451/71.479073,51.126933",
           distance_km: 4.8,
           drive_min: 15,
           drive_from_ru: "от FARШ",
@@ -401,10 +458,10 @@ window.AGALAR_DATA = {
           address_ru: "просп. Ракымжан Кошкарбаев, 6",
           address_kz: "Рақымжан Қошқарбаев даңғылы, 6",
           map: "https://2gis.kz/astana/geo/70000001113778269",
-          distance_km: 1.4,
+          distance_km: 1.2,
           drive_min: 5,
-          drive_from_ru: "от Vista School",
-          drive_from_kz: "Vista School-дан"
+          drive_from_ru: "от Spectrum International School",
+          drive_from_kz: "Spectrum International School-дан"
         },
         {
           time: "19:00–00:00",
