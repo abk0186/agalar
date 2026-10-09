@@ -305,7 +305,7 @@ window.AGALAR_DATA = {
     {
       name_ru: "Ермахан", name_kz: "Ермахан",
       handle: "ermahan_sarybaevich",
-      photo: "/v-3cg4dwoa/assets/friends/ermahan_sarybaevich.jpg",
+      photo: "/v-3cg4dwoa/assets/friends/ermahan_sarybaevich.jpg?v=2",
       role_ru: "Владелец магазинов Picasso (женская обувь, верхняя одежда и сумки) и Picasso Kids (детская обувь) в Астане",
       role_kz: "Астанадағы Picasso (әйелдер аяқ киімі, сырт киім мен сөмкелер) және Picasso Kids (балалар аяқ киімі) дүкендерінің иесі",
       links: [
