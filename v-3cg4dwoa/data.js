@@ -40,8 +40,8 @@
  *                        (set it on every leg; ui.drive_from is only a fallback)
  *                      Distances: OSRM car routing between 2GIS coordinates (07.10.2026); drive times set by the organizer.
  *
- * weather    - live forecast block + background animation (Open-Meteo, no key)
- *   lat / lon / timezone, days[] = visit dates "YYYY-MM-DD"
+ * weather    - current Astana conditions for the page background (Open-Meteo, no key)
+ *   lat / lon / timezone; days[] = visit dates "YYYY-MM-DD" (guest comparison too)
  * music      - background music (YouTube, starts on the first tap; toggle button)
  *   youtube_id, start (seconds)
  */
@@ -102,18 +102,6 @@ window.AGALAR_DATA = {
       footer_small: "Страница для своих: доступна только по ссылке",
       lang_label: "Язык",
       quote_text: "С гостем в дом приходит благодать",
-      weather_title: "Погода в Астане",
-      weather_lead: "Прогноз на дни визита, обновляется автоматически.",
-      weather_now: "Сейчас в Астане",
-      weather_feels: "ощущается как",
-      weather_wind: "ветер",
-      weather_wind_max: "Ветер до",
-      weather_precip: "Вероятность осадков",
-      weather_ms: "м/с",
-      weather_loading: "Загружаем прогноз…",
-      weather_pending: "Прогноз на эти дни появится ближе к дате визита.",
-      weather_error: "Не удалось загрузить прогноз. Попробуйте обновить страницу позже.",
-      weather_source: "Данные: Open-Meteo · обновлено",
       gi_title: "Информация для гостей",
       gi_lead: "Погода в Астане и Актау в дни визита",
       gi_text: "Уважаемые братья! В дни визита в Астане днём около {day}, а вечером около {eve} — на {diff}° прохладнее, чем в Актау. Ночью и ранним утром — около {night}. Просим учесть это и взять с собой верхнюю одежду — осеннюю утеплённую куртку.",
@@ -167,18 +155,6 @@ window.AGALAR_DATA = {
       footer_small: "Өзімізге арналған бет: тек сілтеме арқылы ашылады",
       lang_label: "Тіл",
       quote_text: "Қонақ келсе — құт келер",
-      weather_title: "Астанадағы ауа райы",
-      weather_lead: "Сапар күндеріне арналған болжам, өздігінен жаңарып тұрады.",
-      weather_now: "Қазір Астанада",
-      weather_feels: "сезілуі",
-      weather_wind: "жел",
-      weather_wind_max: "Жел",
-      weather_precip: "Жауын-шашын ықтималдығы",
-      weather_ms: "м/с",
-      weather_loading: "Болжам жүктелуде…",
-      weather_pending: "Бұл күндердің болжамы сапар жақындағанда шығады.",
-      weather_error: "Болжамды жүктеу мүмкін болмады. Бетті кейінірек жаңартып көріңіз.",
-      weather_source: "Дереккөз: Open-Meteo · жаңартылды",
       gi_title: "Қонақтарға ақпарат",
       gi_lead: "Сапар күндері Астана мен Ақтаудағы ауа райы",
       gi_text: "Құрметті ағалар! Сапар күндері Астанада күндіз шамамен {day}, кешке қарай шамамен {eve} — бұл Ақтаудағыдан {diff}° салқын. Түнде және таңертең ерте ауа температурасы {night} шамасында. Соны ескеріп, сырт киім — жылы күздік күрте ала келуіңізді сұраймыз.",

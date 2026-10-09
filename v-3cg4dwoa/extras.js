@@ -1,4 +1,4 @@
-/* agalar.kz: live weather (Open-Meteo), weather background animation, background music (YouTube).
+/* agalar.kz: guest weather comparison (Open-Meteo), page background from current Astana weather, background music (YouTube).
    Everything here is optional: if a request fails, the rest of the page keeps working. */
 (function () {
   "use strict";
@@ -55,17 +55,15 @@
     return '<svg class="wx-ico" aria-hidden="true"><use href="#wx-' + k + '"/></svg>';
   }
 
-  var state = { status: "loading", data: null, updated: null };
+  // Current Astana conditions. The separate forecast cards are gone; this request
+  // only chooses the page background (weather_code + is_day). Guest comparison has its own fetch.
+  var state = { data: null };
   var CACHE_KEY = "agalar_wx_v1", CACHE_MS = 30 * 60 * 1000;
 
-  function apiUrl(withDaily) {
-    var q = "latitude=" + CFG.lat + "&longitude=" + CFG.lon + "&timezone=" + encodeURIComponent(CFG.timezone || "Asia/Almaty") +
-      "&wind_speed_unit=ms&current=temperature_2m,apparent_temperature,weather_code,wind_speed_10m,is_day";
-    if (withDaily && CFG.days && CFG.days.length) {
-      q += "&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,wind_speed_10m_max" +
-        "&start_date=" + CFG.days[0] + "&end_date=" + CFG.days[CFG.days.length - 1];
-    }
-    return "https://api.open-meteo.com/v1/forecast?" + q;
+  function apiUrl() {
+    return "https://api.open-meteo.com/v1/forecast?latitude=" + CFG.lat + "&longitude=" + CFG.lon +
+      "&timezone=" + encodeURIComponent(CFG.timezone || "Asia/Almaty") +
+      "&current=weather_code,is_day";
   }
   function getJSON(url) {
     var ctrl = typeof AbortController === "function" ? new AbortController() : null;
@@ -76,66 +74,26 @@
     }, function (e) { clearTimeout(timer); throw e; });
   }
   function load(force) {
-    if (!CFG.lat || typeof fetch !== "function") { state.status = "error"; render(); return; }
+    if (!CFG.lat || typeof fetch !== "function") { setBackground(); return; }
     if (!force) {
       try {
         var c = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
-        if (c && c.data && Date.now() - c.ts < CACHE_MS) { state = { status: "ok", data: c.data, updated: new Date(c.ts) }; render(); return; }
+        if (c && c.data && c.data.current && c.data.current.weather_code != null && Date.now() - c.ts < CACHE_MS) {
+          state = { data: c.data };
+          setBackground();
+          return;
+        }
       } catch (e) {}
     }
-    getJSON(apiUrl(true)).catch(function () {
-      // forecast window not available yet (or past) -> current weather only
-      return getJSON(apiUrl(false));
-    }).then(function (j) {
-      state = { status: "ok", data: j, updated: new Date() };
+    getJSON(apiUrl()).then(function (j) {
+      if (!j || !j.current || j.current.weather_code == null) throw new Error("no current");
+      state = { data: j };
       try { localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: j })); } catch (e) {}
-      render();
-    }).catch(function () {
-      if (!state.data) state.status = "error";
-      render();
-    });
+      setBackground();
+    }).catch(function () { setBackground(); });
   }
 
   function hhmm(d) { return ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2); }
-
-  function render() {
-    var box = document.getElementById("weather-box");
-    if (!box) return;
-    var L = lang(), i = L === "kz" ? 2 : 1, html = "";
-    var ms = " " + t("weather_ms");
-    if (state.status === "loading") {
-      html = '<p class="wx-msg">' + esc(t("weather_loading")) + "</p>";
-    } else if (state.status === "error") {
-      html = '<p class="wx-msg">' + esc(t("weather_error")) + "</p>";
-    } else {
-      var j = state.data, cur = j.current, daily = j.daily;
-      if (cur) {
-        var w = wmo(cur.weather_code), night = cur.is_day === 0;
-        html += '<div class="wx-now">' + wxIcon(w[0], night) +
-          '<div class="wx-now__body"><p class="wx-now__label">' + esc(t("weather_now")) + "</p>" +
-          '<p class="wx-now__main"><b>' + deg(cur.temperature_2m) + "</b> " + esc(w[i]) + "</p>" +
-          '<p class="wx-now__sub">' + esc(t("weather_feels")) + " " + deg(cur.apparent_temperature) + " · " +
-          esc(t("weather_wind")) + " " + num(cur.wind_speed_10m) + ms + "</p></div></div>";
-      }
-      var days = (CFG.days || []).map(function (iso) {
-        var k = daily && daily.time ? daily.time.indexOf(iso) : -1;
-        if (k < 0) return '<article class="wx-day wx-day--pending"><h3 class="wx-day__date">' + esc(dayLabel(iso)) + '</h3><p class="wx-msg">' + esc(t("weather_pending")) + "</p></article>";
-        var w = wmo(daily.weather_code[k]);
-        var pp = daily.precipitation_probability_max ? daily.precipitation_probability_max[k] : null;
-        return '<article class="wx-day"><h3 class="wx-day__date">' + esc(dayLabel(iso)) + "</h3>" +
-          '<div class="wx-day__main">' + wxIcon(w[0], false) +
-          '<p class="wx-day__temp"><b>' + deg(daily.temperature_2m_max[k]) + '</b><span>' + deg(daily.temperature_2m_min[k]) + "</span></p></div>" +
-          '<p class="wx-day__cond">' + esc(w[i]) + "</p>" +
-          '<ul class="wx-day__facts"><li><svg aria-hidden="true"><use href="#wx-drop"/></svg><span>' + esc(t("weather_precip")) + "</span><b>" + num(pp) + "%</b></li>" +
-          '<li><svg aria-hidden="true"><use href="#wx-wind"/></svg><span>' + esc(t("weather_wind_max")) + "</span><b>" + num(daily.wind_speed_10m_max[k]) + ms + "</b></li></ul></article>";
-      }).join("");
-      html += '<div class="wx-days">' + days + "</div>";
-      if (state.updated) html += '<p class="wx-src">' + esc(t("weather_source")) + " " + hhmm(state.updated) + "</p>";
-    }
-    box.innerHTML = html;
-    box.setAttribute("aria-busy", String(state.status === "loading"));
-    setBackground();
-  }
 
   /* ================= Guest info: Astana vs Aktau ================= */
   var GI = DATA.guest_info || null;
@@ -358,8 +316,8 @@
   });
 
   /* ================= Init ================= */
-  document.addEventListener("agalar:lang", function () { render(); giRender(); updateBtn(); });
-  render();
+  document.addEventListener("agalar:lang", function () { giRender(); updateBtn(); });
+  setBackground();
   giRender();
   load(false);
   giLoad();

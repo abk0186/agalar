@@ -309,40 +309,11 @@ main, .footer { position: relative; z-index: 1; }
 .quote__text p::before { content: "«"; color: var(--gold); margin-right: .06em; }
 .quote__text p::after { content: "»"; color: var(--gold); margin-left: .06em; }
 
-/* Weather block */
-.section--weather { padding-bottom: 0; }
-.section--weather + .section { padding-top: clamp(64px, 9vw, 96px); }
-.weather { max-width: 880px; margin: 0 auto; display: grid; gap: 16px; }
+/* Icons and source line shared by the guest comparison (the old forecast cards are gone) */
 .wx-ico { width: 46px; height: 46px; flex: none; color: var(--gold); }
-.wx-msg { margin: 0; color: var(--muted); font-size: 14.5px; text-align: center; }
-.wx-now { display: flex; align-items: center; gap: 16px; padding: 16px 20px; border-radius: var(--radius); border: 1px solid var(--line);
-  background: linear-gradient(180deg, var(--card-hi), var(--card)); background-color: rgba(11,19,36,.55); }
-.wx-now__body { min-width: 0; }
-.wx-now__label { margin: 0; color: var(--gold); font-size: 11px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; }
-.wx-now__main { margin: 2px 0 0; font-size: 17px; color: var(--text); }
-.wx-now__main b { font-family: var(--serif); font-size: 28px; font-weight: 600; color: var(--gold-2); margin-right: 6px; font-variant-numeric: lining-nums tabular-nums; }
-.wx-now__sub { margin: 2px 0 0; color: var(--muted); font-size: 13.5px; }
-.wx-days { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-.wx-day { position: relative; padding: 22px 22px 18px; border-radius: var(--radius); border: 1px solid var(--line);
-  background: linear-gradient(180deg, var(--card-hi), var(--card)); background-color: rgba(11,19,36,.55); }
-.wx-day::before { content: ""; position: absolute; top: 0; left: 22px; width: 40%; height: 1px; background: linear-gradient(90deg, var(--gold), transparent); opacity: .7; }
-.wx-day__date { margin: 0 0 12px; font-family: var(--serif); font-weight: 600; font-size: 23px; line-height: 1.15; }
-.wx-day__main { display: flex; align-items: center; gap: 14px; }
-.wx-day__main .wx-ico { width: 54px; height: 54px; }
-.wx-day__temp { margin: 0; display: flex; align-items: baseline; gap: 10px; font-family: var(--serif); font-variant-numeric: lining-nums tabular-nums; }
-.wx-day__temp b { font-size: 40px; font-weight: 600; line-height: 1; color: var(--gold-2); }
-.wx-day__temp span { font-size: 24px; color: var(--muted); }
-.wx-day__cond { margin: 10px 0 0; color: var(--text); font-size: 15.5px; }
-.wx-day__facts { list-style: none; margin: 14px 0 0; padding: 12px 0 0; border-top: 1px solid var(--line); display: grid; gap: 6px; }
-.wx-day__facts li { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 13.5px; }
-.wx-day__facts svg { width: 16px; height: 16px; flex: none; color: var(--gold); }
-.wx-day__facts b { margin-left: auto; color: var(--gold-2); font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
-.wx-day--pending .wx-msg { text-align: left; }
 .wx-src { margin: 0; text-align: center; color: var(--dim); font-size: 12px; letter-spacing: .03em; }
 
 /* ---------- Guest info: Astana vs Aktau ---------- */
-.section--guest { padding-bottom: 0; }
-.section--guest + .section { padding-top: clamp(56px, 8vw, 88px); }
 .guest-info { --cold: #9cc3e6; max-width: 880px; margin: 0 auto; display: grid; gap: 16px; }
 .gi-msg { position: relative; display: flex; gap: 16px; align-items: flex-start; padding: 22px 24px; border-radius: var(--radius);
   border: 1px solid var(--line-strong); background: linear-gradient(135deg, rgba(212,176,106,.12), rgba(212,176,106,.03) 60%), rgba(11,19,36,.62); }
@@ -386,13 +357,6 @@ main, .footer { position: relative; z-index: 1; }
   .gi-day::before { left: 18px; }
   .gi-pack { padding: 16px; }
   .gi-pack__list li { border-radius: 14px; }
-}
-@media (max-width: 539px) {
-  .wx-days { grid-template-columns: 1fr; gap: 12px; }
-  .wx-now { padding: 14px 16px; gap: 14px; }
-  .wx-day { padding: 18px 16px 14px; }
-  .wx-day::before { left: 18px; }
-  .wx-day__date { font-size: 22px; }
 }
 
 /* Background animation by current weather (fixed layer behind content) */
